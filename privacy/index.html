@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scar Gizlilik Politikası</title>
+<title>Scar Gizlilik Politikası / Privacy Policy</title>
 <style>
   :root {
     --bg: #0A0A0C;
@@ -29,8 +29,14 @@
   header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
     margin-bottom: 8px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .logo-dot {
     width: 14px;
@@ -43,6 +49,28 @@
     font-size: 22px;
     margin: 0;
     letter-spacing: 0.2px;
+  }
+  .lang-switch {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+  .lang-switch a {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-secondary);
+  }
+  .lang-switch a.active {
+    background: var(--accent);
+    color: #fff;
   }
   .updated {
     color: var(--text-secondary);
@@ -102,71 +130,158 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="logo-dot"></div>
-      <h1>Scar — Gizlilik Politikası</h1>
+      <div class="brand">
+        <div class="logo-dot"></div>
+        <h1 id="page-title">Scar — Gizlilik Politikası</h1>
+      </div>
+      <nav class="lang-switch">
+        <a href="?lang=tr" data-lang-link="tr">TR</a>
+        <a href="?lang=en" data-lang-link="en">EN</a>
+      </nav>
     </header>
-    <p class="updated">Son güncelleme: 10 Eylül 2026</p>
 
-    <p>Bu sayfa, Scar mobil uygulamasını ("Scar", "uygulama") kullanırken hangi bilgilerin toplandığını, nasıl kullanıldığını ve kimlerle paylaşıldığını açıklar. Uygulamayı kullanarak bu politikayı kabul etmiş olursun.</p>
+    <!-- Türkçe -->
+    <div id="content-tr">
+      <p class="updated">Son güncelleme: 10 Eylül 2026</p>
 
-    <h2>Topladığımız Bilgiler</h2>
+      <p>Bu sayfa, Scar mobil uygulamasını ("Scar", "uygulama") kullanırken hangi bilgilerin toplandığını, nasıl kullanıldığını ve kimlerle paylaşıldığını açıklar. Uygulamayı kullanarak bu politikayı kabul etmiş olursun.</p>
 
-    <div class="card">
-      <strong>Hesap bilgileri</strong>
-      <span>E-posta ile kayıt olduğunda e-posta adresin ve belirlediğin ad-soyad; Google veya Apple ile giriş yaptığında ilgili sağlayıcının paylaştığı temel profil bilgileri (e-posta, ad). Katalog gezintisi hesap açmadan da kullanılabilir — hesap yalnızca garaj, favoriler ve yapay zeka video gibi özellikler için gereklidir.</span>
+      <h2>Topladığımız Bilgiler</h2>
+
+      <div class="card">
+        <strong>Hesap bilgileri</strong>
+        <span>E-posta ile kayıt olduğunda e-posta adresin ve belirlediğin ad-soyad; Google veya Apple ile giriş yaptığında ilgili sağlayıcının paylaştığı temel profil bilgileri (e-posta, ad). Katalog gezintisi hesap açmadan da kullanılabilir — hesap yalnızca garaj, favoriler ve yapay zeka video gibi özellikler için gereklidir.</span>
+      </div>
+
+      <div class="card">
+        <strong>Araç fotoğrafları ve oluşturulan videolar</strong>
+        <span>Yapay zeka video özelliğini kullanırken yüklediğin araç fotoğrafları ve bunlardan üretilen videolar, hesabına özel olarak güvenli şekilde saklanır. Bu içeriklere yalnızca sen ve üretim sürecini işleten sistemler erişebilir.</span>
+      </div>
+
+      <div class="card">
+        <strong>Satın alma ve abonelik bilgileri</strong>
+        <span>Premium üyelik veya jeton paketi satın aldığında ödeme bilgilerin (kart numarası vb.) Scar'a hiç ulaşmaz — ödeme doğrudan Apple tarafından işlenir. Abonelik durumunu ve jeton bakiyeni yönetebilmek için anonim bir kullanıcı kimliği abonelik altyapı sağlayıcımızla paylaşılır.</span>
+      </div>
+
+      <div class="card">
+        <strong>Favoriler</strong>
+        <span>Favorilere eklediğin modeller yalnızca cihazında saklanır, herhangi bir sunucuya gönderilmez veya hesabınla senkronize edilmez.</span>
+      </div>
+
+      <h2>Bilgileri Nasıl Kullanıyoruz</h2>
+      <ul>
+        <li>Hesabını oluşturmak, oturumunu açık tutmak ve garaj/favori gibi kişisel özellikleri sunmak için.</li>
+        <li>Yüklediğin fotoğraflardan talep ettiğin yapay zeka videosunu üretmek için.</li>
+        <li>Satın aldığın premium üyeliği veya jeton bakiyeni doğru şekilde hesabına yansıtmak için.</li>
+        <li>Destek taleplerine yanıt vermek için.</li>
+      </ul>
+      <p>Bilgilerini reklam amacıyla kullanmıyor veya üçüncü taraflara satmıyoruz. Uygulamada reklam veya analitik/izleme SDK'sı bulunmuyor.</p>
+
+      <h2>Üçüncü Taraf Hizmet Sağlayıcılar</h2>
+      <p>Uygulamayı çalıştırabilmek için verilerin bir kısmı, yalnızca ilgili hizmeti sağlamak amacıyla aşağıdaki altyapı sağlayıcılarıyla paylaşılır:</p>
+      <ul>
+        <li><strong>Supabase</strong> — hesap girişi, veritabanı ve dosya depolama.</li>
+        <li><strong>RevenueCat</strong> — abonelik ve satın alma durumunun yönetimi (anonim kullanıcı kimliği ile).</li>
+        <li><strong>Apple (App Store)</strong> — ödeme işlemleri.</li>
+        <li><strong>fal.ai</strong> — yapay zeka video/görsel üretimi; yalnızca üretim isteği sırasında yüklediğin fotoğrafı işler.</li>
+      </ul>
+
+      <h2>Veri Saklama ve Hesap Silme</h2>
+      <p>Hesabını ve hesabınla ilişkili tüm verileri (fotoğraflar, oluşturulan videolar, profil bilgileri) silmemizi istersen, aşağıdaki e-posta adresinden bize ulaş — talebin makul bir süre içinde işleme alınır.</p>
+
+      <h2>Çocukların Gizliliği</h2>
+      <p>Scar, 13 yaş altındaki çocuklara yönelik değildir ve bu yaş grubundan bilerek kişisel bilgi toplamaz.</p>
+
+      <h2>Bu Politikadaki Değişiklikler</h2>
+      <p>Bu politika zaman zaman güncellenebilir; önemli değişikliklerde sayfanın üstündeki tarih güncellenir.</p>
+
+      <h2>İletişim</h2>
+      <div class="contact-card">
+        <p>Gizlilikle ilgili sorularını aşağıdaki adrese e-posta ile iletebilirsin.</p>
+        <a class="btn" href="mailto:carberkofficial@gmail.com?subject=Scar%20Gizlilik">carberkofficial@gmail.com</a>
+      </div>
     </div>
 
-    <div class="card">
-      <strong>Araç fotoğrafları ve oluşturulan videolar</strong>
-      <span>Yapay zeka video özelliğini kullanırken yüklediğin araç fotoğrafları ve bunlardan üretilen videolar, hesabına özel olarak güvenli şekilde saklanır. Bu içeriklere yalnızca sen ve üretim sürecini işleten sistemler erişebilir.</span>
-    </div>
+    <!-- English -->
+    <div id="content-en" style="display:none">
+      <p class="updated">Last updated: September 10, 2026</p>
 
-    <div class="card">
-      <strong>Satın alma ve abonelik bilgileri</strong>
-      <span>Premium üyelik veya jeton paketi satın aldığında ödeme bilgilerin (kart numarası vb.) Scar'a hiç ulaşmaz — ödeme doğrudan Apple tarafından işlenir. Abonelik durumunu ve jeton bakiyeni yönetebilmek için anonim bir kullanıcı kimliği abonelik altyapı sağlayıcımızla paylaşılır.</span>
-    </div>
+      <p>This page explains what information is collected, how it's used, and who it's shared with when you use the Scar mobile app ("Scar", "the app"). By using the app, you agree to this policy.</p>
 
-    <div class="card">
-      <strong>Favoriler</strong>
-      <span>Favorilere eklediğin modeller yalnızca cihazında saklanır, herhangi bir sunucuya gönderilmez veya hesabınla senkronize edilmez.</span>
-    </div>
+      <h2>Information We Collect</h2>
 
-    <h2>Bilgileri Nasıl Kullanıyoruz</h2>
-    <ul>
-      <li>Hesabını oluşturmak, oturumunu açık tutmak ve garaj/favori gibi kişisel özellikleri sunmak için.</li>
-      <li>Yüklediğin fotoğraflardan talep ettiğin yapay zeka videosunu üretmek için.</li>
-      <li>Satın aldığın premium üyeliği veya jeton bakiyeni doğru şekilde hesabına yansıtmak için.</li>
-      <li>Destek taleplerine yanıt vermek için.</li>
-    </ul>
-    <p>Bilgilerini reklam amacıyla kullanmıyor veya üçüncü taraflara satmıyoruz. Uygulamada reklam veya analitik/izleme SDK'sı bulunmuyor.</p>
+      <div class="card">
+        <strong>Account information</strong>
+        <span>When you sign up with email, your email address and the display name you choose; when you sign in with Google or Apple, the basic profile information that provider shares (email, name). Browsing the catalog doesn't require an account — an account is only needed for features like your garage, favorites, and AI video generation.</span>
+      </div>
 
-    <h2>Üçüncü Taraf Hizmet Sağlayıcılar</h2>
-    <p>Uygulamayı çalıştırabilmek için verilerin bir kısmı, yalnızca ilgili hizmeti sağlamak amacıyla aşağıdaki altyapı sağlayıcılarıyla paylaşılır:</p>
-    <ul>
-      <li><strong>Supabase</strong> — hesap girişi, veritabanı ve dosya depolama.</li>
-      <li><strong>RevenueCat</strong> — abonelik ve satın alma durumunun yönetimi (anonim kullanıcı kimliği ile).</li>
-      <li><strong>Apple (App Store)</strong> — ödeme işlemleri.</li>
-      <li><strong>fal.ai</strong> — yapay zeka video/görsel üretimi; yalnızca üretim isteği sırasında yüklediğin fotoğrafı işler.</li>
-    </ul>
+      <div class="card">
+        <strong>Vehicle photos and generated videos</strong>
+        <span>When you use the AI video feature, the vehicle photos you upload and the videos generated from them are stored securely and tied to your account. Only you and the systems that power the generation process can access this content.</span>
+      </div>
 
-    <h2>Veri Saklama ve Hesap Silme</h2>
-    <p>Hesabını ve hesabınla ilişkili tüm verileri (fotoğraflar, oluşturulan videolar, profil bilgileri) silmemizi istersen, aşağıdaki e-posta adresinden bize ulaş — talebin makul bir süre içinde işleme alınır.</p>
+      <div class="card">
+        <strong>Purchase and subscription information</strong>
+        <span>Your payment details (card numbers, etc.) never reach Scar when you buy a Premium subscription or a token pack — payment is processed directly by Apple. An anonymous user identifier is shared with our subscription infrastructure provider so we can manage your subscription status and token balance.</span>
+      </div>
 
-    <h2>Çocukların Gizliliği</h2>
-    <p>Scar, 13 yaş altındaki çocuklara yönelik değildir ve bu yaş grubundan bilerek kişisel bilgi toplamaz.</p>
+      <div class="card">
+        <strong>Favorites</strong>
+        <span>Models you add to favorites are stored only on your device — they're never sent to a server or synced with your account.</span>
+      </div>
 
-    <h2>Bu Politikadaki Değişiklikler</h2>
-    <p>Bu politika zaman zaman güncellenebilir; önemli değişikliklerde sayfanın üstündeki tarih güncellenir.</p>
+      <h2>How We Use This Information</h2>
+      <ul>
+        <li>To create your account, keep you signed in, and provide personal features like your garage and favorites.</li>
+        <li>To generate the AI video you request from the photos you upload.</li>
+        <li>To correctly reflect the Premium membership or token balance you've purchased on your account.</li>
+        <li>To respond to support requests.</li>
+      </ul>
+      <p>We don't use your information for advertising and we don't sell it to third parties. The app contains no ad or analytics/tracking SDKs.</p>
 
-    <h2>İletişim</h2>
-    <div class="contact-card">
-      <p>Gizlilikle ilgili sorularını aşağıdaki adrese e-posta ile iletebilirsin.</p>
-      <a class="btn" href="mailto:carberkofficial@gmail.com?subject=Scar%20Gizlilik">carberkofficial@gmail.com</a>
+      <h2>Third-Party Service Providers</h2>
+      <p>To operate the app, some data is shared with the following infrastructure providers, solely to provide the relevant service:</p>
+      <ul>
+        <li><strong>Supabase</strong> — account sign-in, database, and file storage.</li>
+        <li><strong>RevenueCat</strong> — subscription and purchase management (using an anonymous user identifier).</li>
+        <li><strong>Apple (App Store)</strong> — payment processing.</li>
+        <li><strong>fal.ai</strong> — AI video/image generation; it processes the photo you upload only for the generation request itself.</li>
+      </ul>
+
+      <h2>Data Retention and Account Deletion</h2>
+      <p>If you'd like us to delete your account and all data associated with it (photos, generated videos, profile information), contact us at the email address below — your request will be processed within a reasonable time.</p>
+
+      <h2>Children's Privacy</h2>
+      <p>Scar is not directed at children under 13 and we do not knowingly collect personal information from this age group.</p>
+
+      <h2>Changes to This Policy</h2>
+      <p>This policy may be updated from time to time; the date at the top of the page is updated for any material change.</p>
+
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <p>You can email us at the address below with any privacy-related questions.</p>
+        <a class="btn" href="mailto:carberkofficial@gmail.com?subject=Scar%20Privacy">carberkofficial@gmail.com</a>
+      </div>
     </div>
 
     <div class="meta">
       Scar © 2026
     </div>
   </div>
+
+  <script>
+    var params = new URLSearchParams(window.location.search)
+    var lang = params.get('lang') === 'en' ? 'en' : 'tr'
+
+    document.getElementById('content-tr').style.display = lang === 'tr' ? 'block' : 'none'
+    document.getElementById('content-en').style.display = lang === 'en' ? 'block' : 'none'
+    document.documentElement.lang = lang
+    document.getElementById('page-title').textContent = lang === 'en' ? 'Scar — Privacy Policy' : 'Scar — Gizlilik Politikası'
+    document.title = lang === 'en' ? 'Scar Privacy Policy' : 'Scar Gizlilik Politikası'
+
+    document.querySelectorAll('[data-lang-link]').forEach(function (el) {
+      if (el.getAttribute('data-lang-link') === lang) el.classList.add('active')
+    })
+  </script>
 </body>
 </html>
