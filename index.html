@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scar Destek</title>
+<title>Scar Destek / Support</title>
 <style>
   :root {
     --bg: #0A0A0C;
@@ -29,8 +29,14 @@
   header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
     margin-bottom: 40px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .logo-dot {
     width: 14px;
@@ -43,6 +49,28 @@
     font-size: 22px;
     margin: 0;
     letter-spacing: 0.2px;
+  }
+  .lang-switch {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+  .lang-switch a {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-secondary);
+  }
+  .lang-switch a.active {
+    background: var(--accent);
+    color: #fff;
   }
   h2 {
     font-size: 15px;
@@ -99,45 +127,108 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="logo-dot"></div>
-      <h1>Scar — Destek</h1>
+      <div class="brand">
+        <div class="logo-dot"></div>
+        <h1 id="page-title">Scar — Destek</h1>
+      </div>
+      <nav class="lang-switch">
+        <a href="?lang=tr" data-lang-link="tr">TR</a>
+        <a href="?lang=en" data-lang-link="en">EN</a>
+      </nav>
     </header>
 
-    <div class="intro">
-      <p>Scar uygulamasıyla ilgili bir sorun mu yaşıyorsun ya da bir öneride mi bulunmak istiyorsun? Aşağıdaki sık sorulan sorulara göz atabilir ya da doğrudan bize ulaşabilirsin.</p>
+    <!-- Türkçe -->
+    <div id="content-tr">
+      <div class="intro">
+        <p>Scar uygulamasıyla ilgili bir sorun mu yaşıyorsun ya da bir öneride mi bulunmak istiyorsun? Aşağıdaki sık sorulan sorulara göz atabilir ya da doğrudan bize ulaşabilirsin.</p>
+      </div>
+
+      <h2>Sık Sorulan Sorular</h2>
+
+      <div class="card">
+        <h3>Hesabımı nasıl silerim?</h3>
+        <p>Uygulama içinde Profil → Ayarlar → Hesabı Sil yolunu kullanabilir, ya da bu sayfadaki e-posta adresinden bize hesap silme talebini iletebilirsin. Talebin en geç birkaç iş günü içinde işleme alınır.</p>
+      </div>
+
+      <div class="card">
+        <h3>Premium üyeliğimi nasıl iptal ederim / iade alabilir miyim?</h3>
+        <p>Premium abonelikler Apple üzerinden yönetilir: iPhone'da Ayarlar → [Adın] → Abonelikler yolundan iptal edebilirsin. İade talepleri Apple'ın kendi iade süreciyle (reportaproblem.apple.com) işlenir, uygulama üzerinden doğrudan iade yapamıyoruz.</p>
+      </div>
+
+      <div class="card">
+        <h3>Satın aldığım jetonlar hesabıma yansımadı</h3>
+        <p>Böyle bir durumda lütfen App Store'daki satın alma makbuzunla birlikte bize e-posta at; hesabını kontrol edip en kısa sürede çözelim.</p>
+      </div>
+
+      <div class="card">
+        <h3>Yapay zeka video oluşturma çalışmıyor / çok uzun sürüyor</h3>
+        <p>Video üretimi genellikle 1-2 dakika sürer. Normalden uzun sürerse jetonun otomatik olarak iade edilir; sorun devam ederse bize yazabilirsin.</p>
+      </div>
+
+      <h2>Bize Ulaş</h2>
+      <div class="contact-card">
+        <p>Yukarıdaki sorulardan biri sorununu çözmediyse, aşağıdaki adresten bize e-posta gönder — cihaz modelini, iOS sürümünü ve sorunu kısaca yazman çözümü hızlandırır.</p>
+        <a class="btn" href="mailto:carberkofficial@gmail.com?subject=Scar%20Destek">carberkofficial@gmail.com</a>
+      </div>
     </div>
 
-    <h2>Sık Sorulan Sorular</h2>
+    <!-- English -->
+    <div id="content-en" style="display:none">
+      <div class="intro">
+        <p>Running into an issue with the Scar app, or want to send us feedback? Check the FAQ below, or reach out to us directly.</p>
+      </div>
 
-    <div class="card">
-      <h3>Hesabımı nasıl silerim?</h3>
-      <p>Uygulama içinde Profil → Ayarlar → Hesabı Sil yolunu kullanabilir, ya da bu sayfadaki e-posta adresinden bize hesap silme talebini iletebilirsin. Talebin en geç birkaç iş günü içinde işleme alınır.</p>
-    </div>
+      <h2>Frequently Asked Questions</h2>
 
-    <div class="card">
-      <h3>Premium üyeliğimi nasıl iptal ederim / iade alabilir miyim?</h3>
-      <p>Premium abonelikler Apple üzerinden yönetilir: iPhone'da Ayarlar → [Adın] → Abonelikler yolundan iptal edebilirsin. İade talepleri Apple'ın kendi iade süreciyle (reportaproblem.apple.com) işlenir, uygulama üzerinden doğrudan iade yapamıyoruz.</p>
-    </div>
+      <div class="card">
+        <h3>How do I delete my account?</h3>
+        <p>In the app, go to Profile → Settings → Delete Account, or email us at the address below with your deletion request. Your request is processed within a few business days at most.</p>
+      </div>
 
-    <div class="card">
-      <h3>Satın aldığım jetonlar hesabıma yansımadı</h3>
-      <p>Böyle bir durumda lütfen App Store'daki satın alma makbuzunla birlikte bize e-posta at; hesabını kontrol edip en kısa sürede çözelim.</p>
-    </div>
+      <div class="card">
+        <h3>How do I cancel my Premium membership / get a refund?</h3>
+        <p>Premium subscriptions are managed through Apple: on your iPhone, go to Settings → [Your Name] → Subscriptions to cancel. Refunds are handled through Apple's own refund process (reportaproblem.apple.com) — we can't issue refunds directly from the app.</p>
+      </div>
 
-    <div class="card">
-      <h3>Yapay zeka video oluşturma çalışmıyor / çok uzun sürüyor</h3>
-      <p>Video üretimi genellikle 1-2 dakika sürer. Normalden uzun sürerse jetonun otomatik olarak iade edilir; sorun devam ederse bize yazabilirsin.</p>
-    </div>
+      <div class="card">
+        <h3>The tokens I purchased didn't show up in my account</h3>
+        <p>If this happens, please email us along with your App Store purchase receipt — we'll check your account and resolve it as quickly as possible.</p>
+      </div>
 
-    <h2>Bize Ulaş</h2>
-    <div class="contact-card">
-      <p>Yukarıdaki sorulardan biri sorununu çözmediyse, aşağıdaki adresten bize e-posta gönder — cihaz modelini, iOS sürümünü ve sorunu kısaca yazman çözümü hızlandırır.</p>
-      <a class="btn" href="mailto:carberkofficial@gmail.com?subject=Scar%20Destek">carberkofficial@gmail.com</a>
+      <div class="card">
+        <h3>AI video generation isn't working / is taking too long</h3>
+        <p>Video generation usually takes 1-2 minutes. If it takes much longer than that, your tokens are automatically refunded; if the issue persists, feel free to write to us.</p>
+      </div>
+
+      <h2>Contact Us</h2>
+      <div class="contact-card">
+        <p>If none of the above solved your issue, email us at the address below — mentioning your device model, iOS version, and a short description of the issue helps us resolve it faster.</p>
+        <a class="btn" href="mailto:carberkofficial@gmail.com?subject=Scar%20Support">carberkofficial@gmail.com</a>
+      </div>
     </div>
 
     <div class="meta">
-      Scar © 2026 · <a href="/privacy/">Gizlilik Politikası</a>
+      Scar © 2026 · <a id="privacy-link" href="/privacy/">Gizlilik Politikası</a>
     </div>
   </div>
+
+  <script>
+    var params = new URLSearchParams(window.location.search)
+    var lang = params.get('lang') === 'en' ? 'en' : 'tr'
+
+    document.getElementById('content-tr').style.display = lang === 'tr' ? 'block' : 'none'
+    document.getElementById('content-en').style.display = lang === 'en' ? 'block' : 'none'
+    document.documentElement.lang = lang
+    document.getElementById('page-title').textContent = lang === 'en' ? 'Scar — Support' : 'Scar — Destek'
+    document.title = lang === 'en' ? 'Scar Support' : 'Scar Destek'
+
+    var privacyLink = document.getElementById('privacy-link')
+    privacyLink.href = lang === 'en' ? '/privacy/?lang=en' : '/privacy/?lang=tr'
+    privacyLink.textContent = lang === 'en' ? 'Privacy Policy' : 'Gizlilik Politikası'
+
+    document.querySelectorAll('[data-lang-link]').forEach(function (el) {
+      if (el.getAttribute('data-lang-link') === lang) el.classList.add('active')
+    })
+  </script>
 </body>
 </html>
