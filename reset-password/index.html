@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scar Şifre Sıfırlama</title>
+<style>
+  :root {
+    --bg: #0A0A0C;
+    --bg-elevated: #17171b;
+    --card-border: #262629;
+    --text: #F5F5F7;
+    --text-secondary: #A8A8AE;
+    --accent: #E5343F;
+    --success: #3DD16F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .logo-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  h1 {
+    font-size: 17px;
+    margin: 0;
+  }
+  p { color: var(--text-secondary); font-size: 14px; margin: 0 0 16px; line-height: 1.5; }
+  label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .field { margin-bottom: 14px; }
+  input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-size: 15px;
+  }
+  input:focus { outline: none; border-color: var(--accent); }
+  button {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  button:disabled { opacity: 0.6; cursor: default; }
+  .msg { font-size: 13.5px; margin-top: 12px; }
+  .msg.error { color: var(--accent); }
+  .msg.success { color: var(--success); }
+  .center { text-align: center; }
+  .spinner {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--card-border);
+    border-top-color: var(--accent);
+    animation: spin 0.7s linear infinite;
+    margin: 8px auto 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <div class="logo-dot"></div>
+      <h1>Scar — Yeni Şifre Belirle</h1>
+    </header>
+
+    <div id="loading">
+      <p>Bağlantı doğrulanıyor…</p>
+      <div class="spinner"></div>
+    </div>
+
+    <div id="form-wrap" style="display:none">
+      <p>Hesabın için yeni bir şifre belirle.</p>
+      <form id="reset-form">
+        <div class="field">
+          <label for="password">Yeni şifre</label>
+          <input id="password" type="password" placeholder="En az 6 karakter" autocomplete="new-password" />
+        </div>
+        <div class="field">
+          <label for="password2">Yeni şifre (tekrar)</label>
+          <input id="password2" type="password" placeholder="••••••••" autocomplete="new-password" />
+        </div>
+        <button id="submit-btn" type="submit">Şifreyi Güncelle</button>
+      </form>
+      <div id="form-msg" class="msg"></div>
+    </div>
+
+    <div id="invalid-wrap" class="center" style="display:none">
+      <p>Bu bağlantının süresi dolmuş veya geçersiz. Uygulamadan "Şifremi Unuttum" adımını tekrar dene.</p>
+    </div>
+
+    <div id="done-wrap" class="center" style="display:none">
+      <p class="msg success">Şifren güncellendi. Artık Scar uygulamasına yeni şifrenle giriş yapabilirsin.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://uyymctmawmzotnfhdtpb.supabase.co'
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV5eW1jdG1hd216b3RuZmhkdHBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1NTY4NTcsImV4cCI6MjEwMzEzMjg1N30.nGU-w6gOyEy39v-Sx5hQT7cL2Yr4e4vRS5Od-0lVOJM'
+
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+    const loadingEl = document.getElementById('loading')
+    const formWrapEl = document.getElementById('form-wrap')
+    const invalidWrapEl = document.getElementById('invalid-wrap')
+    const doneWrapEl = document.getElementById('done-wrap')
+    const formMsgEl = document.getElementById('form-msg')
+    const formEl = document.getElementById('reset-form')
+    const submitBtn = document.getElementById('submit-btn')
+
+    function show(el) {
+      ;[loadingEl, formWrapEl, invalidWrapEl, doneWrapEl].forEach((e) => (e.style.display = 'none'))
+      el.style.display = 'block'
+    }
+
+    // Supabase, recovery linkinde token'ları URL fragment'ında döndürür
+    // (#access_token=...&refresh_token=...&type=recovery) — bunu elle
+    // ayrıştırıyoruz, sunucuya hiç gitmez.
+    function parseHashTokens() {
+      const hash = window.location.hash.startsWith('#') ? window.location.hash.slice(1) : window.location.hash
+      const params = new URLSearchParams(hash)
+      return {
+        access_token: params.get('access_token'),
+        refresh_token: params.get('refresh_token'),
+        type: params.get('type'),
+      }
+    }
+
+    async function init() {
+      const { access_token, refresh_token, type } = parseHashTokens()
+      if (!access_token || !refresh_token || type !== 'recovery') {
+        show(invalidWrapEl)
+        return
+      }
+      const { error } = await client.auth.setSession({ access_token, refresh_token })
+      if (error) {
+        show(invalidWrapEl)
+        return
+      }
+      show(formWrapEl)
+    }
+
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      formMsgEl.textContent = ''
+      formMsgEl.className = 'msg'
+
+      const password = document.getElementById('password').value
+      const password2 = document.getElementById('password2').value
+
+      if (password.length < 6) {
+        formMsgEl.textContent = 'Şifre en az 6 karakter olmalı.'
+        formMsgEl.className = 'msg error'
+        return
+      }
+      if (password !== password2) {
+        formMsgEl.textContent = 'Şifreler eşleşmiyor.'
+        formMsgEl.className = 'msg error'
+        return
+      }
+
+      submitBtn.disabled = true
+      submitBtn.textContent = 'Güncelleniyor…'
+      const { error } = await client.auth.updateUser({ password })
+      submitBtn.disabled = false
+      submitBtn.textContent = 'Şifreyi Güncelle'
+
+      if (error) {
+        formMsgEl.textContent = 'Şifre güncellenemedi, tekrar dener misin?'
+        formMsgEl.className = 'msg error'
+        return
+      }
+      show(doneWrapEl)
+    })
+
+    init()
+  </script>
+</body>
+</html>
